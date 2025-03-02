@@ -45,4 +45,11 @@ public class GradeCalculator {
         }
 
         double average = sum / grades.size(); // Calculate the average
+
+               // Step 3: Output results
+               System.out.println("\nGrade Statistics:");
+               System.out.println("Number of students: " + grades.size());
+               System.out.println("Average grade: " + average);
+               System.out.println("Highest grade: " + highest);
+               System.out.println("Lowest grade: " + lowest);
     }}
