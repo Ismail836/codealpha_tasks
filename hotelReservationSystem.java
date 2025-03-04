@@ -14,4 +14,10 @@ class Room {
         this.capacity = capacity;
     }
 
+    @Override
+    public String toString() {
+        return "Room " + number + " (" + type + "), Price: $" + price + ", Available: " + available;
+    }
+}
+
 }
