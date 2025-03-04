@@ -43,3 +43,12 @@ class Reservation {
         return "Reservation ID: " + id + ", Room: " + room.number + ", Total: $" + total + ", Payment: " + status;
     }
 }
+
+public class hotelReservationSystem {
+
+    public static void main(String[] args) {
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(new Room("101", "Single", 100, 1));
+        rooms.add(new Room("102", "Double", 150, 2));
+        rooms.add(new Room("201", "Suite", 300, 4));
+
