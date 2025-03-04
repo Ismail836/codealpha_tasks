@@ -69,3 +69,13 @@ public class hotelReservationSystem {
         }
     }
 
+    public static List<Room> search(List<Room> rooms, LocalDate in, LocalDate out, String type, int capacity) {
+        List<Room> result = new ArrayList<>();
+        for (Room room : rooms) {
+            if (room.available && (type == null || room.type.equals(type)) && room.capacity >= capacity) {
+                result.add(room);
+            }
+        }
+        return result;
+    }
+}
