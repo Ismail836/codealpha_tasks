@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 class Room {
@@ -51,4 +53,19 @@ public class hotelReservationSystem {
         rooms.add(new Room("101", "Single", 100, 1));
         rooms.add(new Room("102", "Double", 150, 2));
         rooms.add(new Room("201", "Suite", 300, 4));
+
+        LocalDate in = LocalDate.of(2024, 10, 26);
+        LocalDate out = LocalDate.of(2024, 10, 28);
+
+        List<Room> available = search(rooms, in, out, "Double", 2);
+        System.out.println("Available Rooms:\n" + available);
+
+        if (!available.isEmpty()) {
+            Room selected = available.get(0);
+            Reservation res = new Reservation(1, selected, in, out, "John Doe", "john.doe@example.com");
+            System.out.println("\nReservation:\n" + res);
+            selected.available = false;
+            System.out.println("\nDouble room availability after reservation:\n"+ search(rooms,in,out,"Double",2));
+        }
+    }
 
