@@ -61,4 +61,14 @@ class Portfolio {
         System.out.printf("Total Portfolio Value: $%.2f\n", totalValue);
     }
 
+    private double getStockPrice(String symbol) {
+        // Simulate fetching the current price (for simplicity, assume it's fixed)
+        Map<String, Double> prices = new HashMap<>();
+        prices.put("AAPL", 150.0);
+        prices.put("GOOGL", 2800.0);
+        prices.put("AMZN", 3400.0);
+        prices.put("TSLA", 700.0);
+        prices.put("MSFT", 300.0);
+        return prices.getOrDefault(symbol, 0.0);
+    }
 }
