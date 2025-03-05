@@ -44,4 +44,21 @@ class Portfolio {
         }
         System.out.printf("Sold %d shares of %s at $%.2f per share.\n", quantity, symbol, price);
     }
+
+    public void trackPortfolio(Map<String, Double> marketData) {
+        System.out.println("\nPortfolio Summary:");
+        System.out.printf("Balance: $%.2f\n", balance);
+        double totalValue = balance;
+        for (Map.Entry<String, Integer> entry : stocks.entrySet()) {
+            String symbol = entry.getKey();
+            int quantity = entry.getValue();
+            double currentPrice = marketData.getOrDefault(symbol, 0.0);
+            double value = quantity * currentPrice;
+            totalValue += value;
+            System.out.printf("%s: %d shares | Current Price: $%.2f | Value: $%.2f\n",
+                    symbol, quantity, currentPrice, value);
+        }
+        System.out.printf("Total Portfolio Value: $%.2f\n", totalValue);
+    }
+
 }
