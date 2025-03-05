@@ -72,3 +72,64 @@ class Portfolio {
         return prices.getOrDefault(symbol, 0.0);
     }
 }
+
+public class StockTradingPlatform {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Portfolio portfolio = new Portfolio();
+
+        while (true) {
+            System.out.println("\n--- Simple Stock Trading Platform ---");
+            System.out.println("1. Buy Stocks");
+            System.out.println("2. Sell Stocks");
+            System.out.println("3. Track Portfolio");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter stock symbol: ");
+                    String buySymbol = scanner.nextLine().toUpperCase();
+                    System.out.print("Enter quantity to buy: ");
+                    int buyQuantity = scanner.nextInt();
+                    if (buyQuantity <= 0) {
+                        System.out.println("Quantity must be positive!");
+                        break;
+                    }
+                    double buyPrice = portfolio.getStockPrice(buySymbol);
+                    if (buyPrice == 0.0) {
+                        System.out.println("Invalid stock symbol!");
+                        break;
+                    }
+                    portfolio.buyStock(buySymbol, buyQuantity, buyPrice);
+                    break;
+
+                case 2:
+                    System.out.print("Enter stock symbol: ");
+                    String sellSymbol = scanner.nextLine().toUpperCase();
+                    System.out.print("Enter quantity to sell: ");
+                    int sellQuantity = scanner.nextInt();
+                    if (sellQuantity <= 0) {
+                        System.out.println("Quantity must be positive!");
+                        break;
+                    }
+                    portfolio.sellStock(sellSymbol, sellQuantity);
+                    break;
+
+                case 3:
+                    portfolio.trackPortfolio(new HashMap<>()); // Simulate market data
+                    break;
+
+                case 4:
+                    System.out.println("Exiting the platform. Goodbye!");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+}
