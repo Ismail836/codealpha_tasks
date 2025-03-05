@@ -30,4 +30,18 @@ class Portfolio {
         System.out.printf("Bought %d shares of %s at $%.2f per share.\n", quantity, symbol, price);
     }
 
+    public void sellStock(String symbol, int quantity) {
+        if (!stocks.containsKey(symbol) || stocks.get(symbol) < quantity) {
+            System.out.println("Not enough shares to sell!");
+            return;
+        }
+        double price = getStockPrice(symbol);
+        double earnings = quantity * price;
+        balance += earnings;
+        stocks.put(symbol, stocks.get(symbol) - quantity);
+        if (stocks.get(symbol) == 0) {
+            stocks.remove(symbol);
+        }
+        System.out.printf("Sold %d shares of %s at $%.2f per share.\n", quantity, symbol, price);
+    }
 }
